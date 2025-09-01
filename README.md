@@ -7,11 +7,6 @@ This repository contains the C source code for a robust Automatic Transfer Switc
 - **Automatic Operation**: Fully automates the power transfer process between the Commercial Electric Board (CEB) and a backup generator.
 - **Robust State Machine**: The core logic is built on a finite state machine, ensuring predictable and reliable operation through all phases (monitoring, starting, warm-up, transfer, cool-down).
 - **Configurable Timers**: All critical timing delays are defined as constants, making it easy to customize for different generator models and site requirements.
-  - CEB Fail Verification Delay
-  - Generator Crank Time
-  - Generator Warm-up Period
-  - CEB Return Stability Delay
-  - Generator Cool-down Period
 - **Failure Detection**: The system can detect and report critical failures, such as the generator failing to start or failing during runtime.
 - **Auto-Recovery Logic**: A key safety feature where the system can automatically recover from a generator fault if the mains power returns, immediately switching to the stable source and silencing the alarm.
 - **User Interface**: Provides clear, real-time status updates on a 16x2 character LCD, using custom characters for an intuitive display.
@@ -31,11 +26,9 @@ The controller operates based on a state machine. It continuously reads the stat
 - **`STATE_GEN_START_FAIL`**: The generator failed to start within the allowed crank time. A critical alarm is activated.
 - **`STATE_GEN_RUNTIME_FAIL`**: The generator failed while running. A critical alarm is activated.
 
-In either failure state, the system continuously checks for the return of mains power. If mains returns, it will **automatically recover** to `STATE_ON_CEB` and connect the load to the safe power source.
-
 ## Hardware Requirements
 
-- **Microcontroller**: A PIC microcontroller compatible with the MPLAB XC8 C Compiler (e.g., PIC16F877A, which this code is well-suited for).
+- **Microcontroller**: A PIC microcontroller compatible with the MPLAB XC8 C Compiler (e.g., PIC16F877A).
 - **Crystal Oscillator**: 8 MHz crystal with appropriate loading capacitors.
 - **Display**: Standard 16x2 Character LCD (HD44780 compatible).
 - **Relays**:
@@ -64,6 +57,14 @@ The firmware is configured with the following pin definitions. These can be easi
 | RD5 | LCD Data 5            | `D5`              |
 | RD6 | LCD Data 6            | `D6`              |
 | RD7 | LCD Data 7            | `D7`              |
+
+## Circuit Diagram
+
+Below is a photo of the soldered prototype circuit for reference.
+
+![ATS Prototype Circuit](./assets/img.jpg)
+
+*(Note: Ensure you have uploaded your `img.jpg` file to an `assets` folder in your repository for the image above to display correctly.)*
 
 ## Software & Setup
 
