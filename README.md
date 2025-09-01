@@ -64,7 +64,7 @@ Below is a photo of the soldered prototype circuit for reference.
 
 ![ATS Prototype Circuit](./assets/img.jpg)
 
-*(Note: Ensure you have uploaded your `img.jpg` file to an `assets` folder in your repository for the image above to display correctly.)*
+
 
 ## Software & Setup
 
